@@ -1,0 +1,42 @@
+= Presentations
+
+Within this repository you can find all my own presentations made for work, day-to-day topics or private thinks I would like to share.
+Feel free to use what you find useful.
+
+In case you do, I would appreciate a link to this repository.
+
+Thanks in advance and have fun!
+
+== Using generate.js
+
+[source, bash]
+----
+# Bauen der notwendigen Dependencies
+cd _reveal.js
+npm install
+
+# Bauen der lokalen Dependencies
+cd ..
+npm install
+
+# Bauen der Präsentationen (alle Ordner die nicht mit _ beginnen
+npm run generate
+----
+
+
+== Using Dockerfile
+
+The provided Dockerfile contains the latest instance of docker-asciidoctor.
+You can simply use it with the following command.
+Within the link:Dockerfile[] you find an additional volume for the local reveal-js submodule.
+This is mounted too, by using the following command.
+
+[source, bash]
+----
+docker build -t <tag-name> .
+
+docker run -it -u $(id -u):$(id -g) -v <your directory>:/documents/ -v _reveal.js:/opt/local_revealjs/ <tag-name>
+----
+
+For additional commands within the container see https://github.com/asciidoctor/docker-asciidoctor/blob/main/README.adoc[here].
+

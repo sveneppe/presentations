@@ -1,0 +1,87 @@
+= Verteidung Masterarbeit
+
+:figure-caption: Abbildung
+:important-caption: Warnung
+:backend: revealjs
+
+// RevealJs-Properties
+:revealjs_theme: nipa-night
+:revealjsdir: ../_reveal.js/head
+//:revealjs_autoSlide: 5000
+:revealjs_history: true
+:revealjs_fragmentInURL: true
+:revealjs_viewDistance: 5
+:revealjs_width: 1408
+:revealjs_height: 792
+:revealjs_controls: true
+:revealjs_controlsLayout: edges
+:revealjs_controlsTutorial: true
+:revealjs_slideNumber: c/t
+:revealjs_showSlideNumber: all
+:revealjs_showNotes: false
+:revealjs_autoPlayMedia: true
+:revealjs_defaultTiming: 42
+//:revealjs_transitionSpeed:
+:revealjs_history: true
+:revealjs_center: true
+:revealjs_transition: fade
+:revealjs_backgroundTransition: fade
+// Need to be overwritten
+:revealjs_parallaxBackgroundImage: images/snowy_mountain.jpg
+:revealjs_parallaxBackgroundSize: 2500px 1400px
+
+:imagesdir: images
+:source-highlighter: highlightjs
+:icons: font
+
+:docinfo: shared
+:docinfodir: ../_shared
+
+
+
+++++
+<style>
+.reveal .title h1 {
+	font-size: 2em;
+}
+.reveal .title h2 {
+	font-size: 1em;
+}
+</style>
+<h2>Einfluss von Korrekturfaktoren auf die Qualität des Record Linkage der Krebsregister</h2>
+++++
+
+:revealjs_totalTime: 1500
+
+:host-name: Oberseminar - Fakultät Mathematik & Informatik
+:host-url: https://www.fernuni-hagen.de/dbis/forschung/oberseminar.shtml
+include::../_shared/slide-footer.adoc[]
+
+:title: Verteidung Masterarbeit
+
+
+
+// ############################ //
+// Let's Start the presentation //
+// ############################ //
+
+
+
+include::slides/1_Intro.adoc[]
+
+include::slides/2_background_and_methods.adoc[]
+
+include::slides/3_data_provision_and_processing.adoc[]
+
+include::slides/4_analysis.adoc[]
+
+include::slides/5_discussion_and_results.adoc[]
+
+
+*Danke für Ihre Aufmerksamkeit!*
+
+
+// Press "s" for speaker Notes!
+
+// LKR-Schriftfarbe grün: #00a8b4 rgba(0,168,180,255)
+// LKR-Schriftfarbe dunkel blau: #003064 rgba(0,48,100,255)

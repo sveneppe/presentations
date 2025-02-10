@@ -1,0 +1,11 @@
+== 1. Einleitung
+
+* Ziel der Masterarbeit: Zeitliche Evaluation von Korrekturfaktoren
+** Forschungsfrage
+** Was möchte mit dieser Masterarbeit erreichen?
+** Was ist das Ziel?
+** Scope etc.
+* Bedeutung von Record Linkage für Krebsregister
+* Wissenschaftlicher Beitrag der Arbeit
+* Methode: Data Science Process Model (DASC-PM)
+* Überblick über den Präsentationsverlauf

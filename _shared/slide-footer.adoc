@@ -1,0 +1,24 @@
+[subs="attributes"]
+++++
+<footer>
+	<div class="participant">
+		<a href="https://github.com/sveneppe" title="Sven"><img src="images/seppe-face.jpg" alt="Photo of Sven" class="logo"></a>
+		<a href="https://www.landeskrebsregister.nrw/"><img src="images/logo_lightbg.png" alt="Logo LKR NRW" class="logo"></a>
+		<div class="name"><p>
+		</p></div>
+	</div>
+	<div class="participant">
+		<a href="{host-url}" title="{host-name}"></a>
+        <a href="https://www.fernuni-hagen.de/"><img src="images/logo_fernuni.png" alt="Logo Fernuni" class="logo"></a>
+		<div class="name"><p>
+			<a href="{host-url}" title="{host-name} website">{host-name}</a>
+		</p></div>
+	</div>
+</footer>
+<!-- Just adding a footer does not work because reveal.js puts it into the slides and we couldn't get it out via CSS. So we move it via JavaScript. -->
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		document.body.appendChild(document.querySelector('footer'));
+	})
+</script>
+++++

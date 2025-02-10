@@ -1,0 +1,21 @@
+== 3. Datenbereitstellung & Verarbeitung
+
+=== 3.1 Quellen der Daten
+
+* Zusammensetzung: Identitätsdaten, medizinische Daten
+* Strukturierte Speicherung (PostgreSQL-Datenbank)
+* Sicherheitsaspekte und Datenschutzmaßnahmen
+
+=== 3.2 Datenaufbereitung
+
+* Bereinigung und Transformation der Rohdaten
+* Umgang mit fehlenden und fehlerhaften Werten
+* Anpassung des Java-Codes zur Neuberechnung der Korrekturfaktoren
+
+---
+
+Vorschlag:
+
+* Grafik mit sequenzieller Schrittfolge
+** Als Übersicht quasi mit sprechenden Titeln und Methodenreferenzen
+*** Vorteil: Auf Teilschritte muss nicht so stark eingegangen werden

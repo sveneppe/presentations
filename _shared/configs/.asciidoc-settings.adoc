@@ -1,0 +1,34 @@
+:figure-caption: Abbildung
+:important-caption: Warnung
+
+// RevealJs-Properties
+:revealjs_theme: nipa-night
+//:revealjs_autoSlide: 5000
+:revealjs_history: true
+:revealjs_fragmentInURL: true
+:revealjs_viewDistance: 5
+:revealjs_width: 1408
+:revealjs_height: 792
+:revealjs_controls: true
+:revealjs_controlsLayout: edges
+:revealjs_controlsTutorial: true
+:revealjs_slideNumber: c/t
+:revealjs_showSlideNumber: speaker
+:revealjs_autoPlayMedia: true
+:revealjs_defaultTiming: 42
+//:revealjs_transitionSpeed:
+:revealjs_history: true
+:revealjs_center: true
+:revealjs_transition: fade
+:revealjs_backgroundTransition: fade
+// Need to be overwritten
+//:revealjs_parallaxBackgroundImage: images/snowy_mountain.jpg
+:revealjs_parallaxBackgroundSize: 2500px 1400px
+// need to be overwritten - default
+:customcss: ../css/nipa-night.css
+
+:imagesdir: images
+:source-highlighter: highlightjs
+// need to be overwritten - default
+:highlightjs-theme: ../css/atom-one-light.css
+:icons: font

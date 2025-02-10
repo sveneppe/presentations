@@ -1,0 +1,19 @@
+== 2. Hintergrund & Methodik
+
+=== 2.1 Das Landeskrebsregister NRW
+
+* Geschichte und Entwicklung
+* Bedeutung der Datenqualität für die Forschung
+
+=== 2.2 Das Record Linkage Verfahren
+
+* Grundlagen nach Fellegi & Sunter (1969)
+* Bedeutung von Korrekturfaktoren pM und pU
+* Praktische Umsetzung im LKR NRW
+
+---
+
+* Nur die Informationen die Absolut Notwendig für die Arbeit sind
+* Qualität vor Quantität
+* Vollständig ausdifferenziert beschrieben
+* Von dort aus Schritt für Schritt in die Tiefe

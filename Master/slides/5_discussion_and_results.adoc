@@ -1,0 +1,51 @@
+== 5. Diskussion & Schlussfolgerungen
+
+=== 5.1 Bewertung der Ergebnisse
+
+* Wie zuverlässig sind die Korrekturfaktoren?
+* Einfluss struktureller Änderungen auf die Qualität des Record Linkage
+* Interpretation der Trends in den pM-Werten
+
+=== 5.2 Empfehlungen für zukünftige Arbeiten
+
+* Einführung eines standardisierten Monitorings für Korrekturfaktoren
+* Nutzung weiterer Machine-Learning-Modelle zur Qualitätsverbesserung
+* Langfristige Überwachung der Datenqualität
+
+=== 5.3 Offene Fragen & Diskussion
+
+* Welchen Einfluss haben geänderte Datenschutzrichtlinien auf das Verfahren?
+* Ist eine Kombination aus deterministischem und probabilistischem Matching sinnvoll?
+* Inwiefern könnte eine erweiterte Nutzung externer Datenquellen helfen?
+
+
+---
+
+Empfehlung:
+
+Einen abschließenden Satz, dass auf Basis dieser Masterarbeit weitere Forschungsarbeiten / Analysearbeiten am LKR fortgeführt werden.
+
+
+Pflicht -> Foliennummern
+
+Fragen werden primär zu den Folien gestellt
+
+Diskussionsrunde!
+
+Fragen für Andrea vorbereiten um Informationen noch mitzugeben
+
+
+* Sebastian einmal separat alle Daten zur Masterarbeit bereitstellen, um dies zu bewerten
+* Herr Beecks bekommt die E-Mailadresse von Sebastian und wendet sich an ihn zwecks Einschätzung und Bewertung
+* Grundlegende Qualität wird eingeschätzt
+* Unterschied von bis zu 2 Notenstufen sind erlaubt
+* Sebastian muss sich "lediglich" grundlegend mit der Arbeit beschäftigen Data Science wird von Herrn Beecks benotet
+
+* Kimberley Berkenkopf ist innerhalb des Verwaltungsprozesses primäre Ansprechpartnerin:
+** Note,
+** Gutachten
+** ETC.
+
+* Andrea möchte keine Durchsicht, sie möchte jedoch einen Satz falls es technische Schwierigkeiten gibt
+
+* Nach dem Vortrag, Feedback-Termin mit Andrea (spontan, wenn es passt)

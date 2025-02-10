@@ -1,0 +1,31 @@
+== 4. Analyse der Korrekturfaktoren
+
+=== 4.1 Explorative Datenanalyse (EDA)
+
+* Identifikation von Trends und Auffälligkeiten
+* Berechnung der pM- und pU-Werte über 26 Jahre
+* Wachstum der Namensvielfalt und Einfluss auf die Matching-Qualität
+* *Abb. 1:* Entwicklung der pM-Werte von 1997 bis 2022
+
+=== 4.2 Fehleranalyse und Korrelationen
+
+* Untersuchung von Fehlerquellen in der Matching-Logik
+* Pearson- und Spearman-Korrelationen zwischen Attributen
+* Bedeutung für die Qualität der Identitätszuordnung
+* *Abb. 2:* Korrelationsmatrix für die wichtigsten Match-Attribute
+
+=== 4.3 Prognosen & Modellierung
+
+* Anwendung von ARIMA-Modellen zur Vorhersage der Korrekturfaktoren
+* Vergleich mit klassischen Regressionsmodellen
+* *Abb. 3:* Prognose der pM-Werte für zukünftige Zeiträume
+
+---
+
+Eine Analyse tiefgehend ausarbeiten und vorstellen
+** Mathematisch
+** Analytisch
+** Ergebnisse
+** Beginnend mit Hypothesenaufstellung
+
+Anschließend Zusammenfassend den Rest
