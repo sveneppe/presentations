@@ -1,0 +1,57 @@
+[subs="attributes"]
+++++
+<div class="event">
+	<div class="participant">
+		<a href="https://github.com/sveneppe" title="Sven"><img src="images/seppe-face.jpg" alt="Photo of Sven" class="logo"></a>
+		<a href="https://www.landeskrebsregister.nrw/"><img src="images/logo_lightbg.png" alt="Logo LKR NRW" class="logo"></a>
+		<div class="name"><p>
+		</p></div>
+	</div>
+	<div class="participant">
+		<a href="{host-url}" title="{host-name}"><img src="{host-logo-url}" alt="Logo of {host-name}" class="logo" style="{host-logo-style}"></a>
+		<div class="name">
+			<p><a href="{host-url}" title="{host-name} website">{host-name}</a></p>
+			<p><a href="{host-twitter-url}" title="{host-name} on Twitter">{host-twitter-name}</a></p>
+		</div>
+	</div>
+
+   <!-- <div class="participant">
+		<a href="{guest-url}" title="{guest-name}"><img src="images/{guest-photo}"  alt="Photo of {guest-name}" class="logo"></a>
+		<div class="name">
+			<p><a href="{guest-url}" title="{guest-name} online">{guest-name}</a></p>
+			<p><a href="{guest-twitter-url}" title="{guest-name} on Twitter">{guest-twitter-name}</a></p>
+		</div>
+	</div>-->
+
+</div>
+<footer>
+	<div class="participant">
+		<a href="https://github.com/sveneppe" title="Sven"><img src="images/seppe-face.jpg" alt="Photo of Sven" class="logo"></a>
+		<a href="https://www.landeskrebsregister.nrw/"><img src="images/logo_lightbg.png" alt="Logo LKR NRW" class="logo"></a>
+		<div class="name"><p>
+		</p></div>
+	</div>
+
+	<!--<div class="participant">
+		<a href="{guest-url}" title="{guest-name}"><img src="images/{guest-photo}"  alt="Photo of {guest-name}" class="logo"></a>
+		<div class="name"><p>
+			<a href="{guest-url}" title="{guest-name} online">{guest-name}</a>
+			/ <a href="{guest-twitter-url}" title="{guest-name} on Twitter">{guest-twitter-name}</a>
+		</p></div>
+	</div>-->
+
+	<div class="participant">
+		<a href="{host-url}" title="{host-name}"><img src="{host-logo-url}" alt="Logo of {host-name}" class="logo" style="{host-logo-style}"></a>
+		<div class="name"><p>
+			<a href="{host-url}" title="{host-name} website">{host-name}</a>
+			/ <a href="{host-twitter-url}" title="{host-name} on Twitter">{host-twitter-name}</a>
+		</p></div>
+	</div>
+</footer>
+<!-- Just adding a footer does not work because reveal.js puts it into the slides and we couldn't get it out via CSS. So we move it via JavaScript. -->
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		document.body.appendChild(document.querySelector('footer'));
+	})
+</script>
+++++

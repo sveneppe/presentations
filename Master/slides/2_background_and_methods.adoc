@@ -1,19 +1,34 @@
-== 2. Hintergrund & Methodik
+== Was wurde gemacht, wie, womit & warum?
 
-=== 2.1 Das Landeskrebsregister NRW
 
-* Geschichte und Entwicklung
-* Bedeutung der Datenqualität für die Forschung
 
-=== 2.2 Das Record Linkage Verfahren
 
-* Grundlagen nach Fellegi & Sunter (1969)
-* Bedeutung von Korrekturfaktoren pM und pU
-* Praktische Umsetzung im LKR NRW
+=== Was wurde jetzt eigentlich gemacht?
 
----
+[%step]
+* Erstellung
 
-* Nur die Informationen die Absolut Notwendig für die Arbeit sind
-* Qualität vor Quantität
-* Vollständig ausdifferenziert beschrieben
-* Von dort aus Schritt für Schritt in die Tiefe
+[%step]
+* Analyse
+
+[%step]
+* Bewertung
+
+
+[.notes]
+--
+* Die Erstellung der Korrekturfaktoren auf Basis eines eigens geschriebenen Softwareprogramms
+** Grundlage der Arbeit neben den eigentlichen Daten
+* Die Analyse Form einer explorativen Datenanalyse
+** Anfänglich quantitativ und visuell einen Überblick verschafft
+** Im Verlauf der Arbeit spezialisiertere Fragestellungen
+* Bewertung
+** Interpretation der Ergebnisse
+** Einordnung im Kontext der Entwicklung Ereignisse, Herausforderungen, technische Änderungen etc.
+** Empfehlung an das LKR
+--
+
+
+
+
+

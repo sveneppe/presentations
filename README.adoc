@@ -7,6 +7,14 @@ In case you do, I would appreciate a link to this repository.
 
 Thanks in advance and have fun!
 
+== Default:
+
+[source, bash]
+----
+.\asciidoctor-revealjs-win.exe -v -a revealjs_theme=<Theme> -a safe=experimental <presentation xyz>
+----
+
+
 == Using generate.js
 
 [source, bash]

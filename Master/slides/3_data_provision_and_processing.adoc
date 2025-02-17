@@ -1,12 +1,12 @@
-== 3. Datenbereitstellung & Verarbeitung
+== Datenbereitstellung & Verarbeitung
 
-=== 3.1 Quellen der Daten
+=== Quellen der Daten
 
 * Zusammensetzung: Identitätsdaten, medizinische Daten
 * Strukturierte Speicherung (PostgreSQL-Datenbank)
 * Sicherheitsaspekte und Datenschutzmaßnahmen
 
-=== 3.2 Datenaufbereitung
+=== Datenaufbereitung
 
 * Bereinigung und Transformation der Rohdaten
 * Umgang mit fehlenden und fehlerhaften Werten

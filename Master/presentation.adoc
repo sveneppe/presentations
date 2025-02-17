@@ -1,5 +1,9 @@
 = Verteidung Masterarbeit
 
+:!toc-title:
+:toc: left
+:toclevels: 1
+
 :figure-caption: Abbildung
 :important-caption: Warnung
 :backend: revealjs
@@ -31,13 +35,16 @@
 :revealjs_parallaxBackgroundSize: 2500px 1400px
 
 :imagesdir: images
-:source-highlighter: highlightjs
+:source-highlighter: highlight.js
 :icons: font
 
 :docinfo: shared
 :docinfodir: ../_shared
 
+:revealjs_plugin_zoom: enabled
+:revealjs_plugin_notes: enabled
 
+:stem: latexmath
 
 ++++
 <style>
@@ -53,11 +60,30 @@
 
 :revealjs_totalTime: 1500
 
-:host-name: Oberseminar - Fakultät Mathematik & Informatik
-:host-url: https://www.fernuni-hagen.de/dbis/forschung/oberseminar.shtml
+
+:personal-image: images/seppe-face.jpg
+:guest-name: Oberseminar
+:guest-url: https://www.fernuni-hagen.de/dbis/forschung/oberseminar.shtml
+:guest-logo: images/logo_fernuni.png
+:host-logo: images/logo_lightbg.png
+:host-url: https://www.landeskrebsregister.nrw/
 include::../_shared/slide-footer.adoc[]
 
+
 :title: Verteidung Masterarbeit
+
+
+== Verteidigung Masterarbeit
+
+++++
+<table class="toc" align="center">
+    <tr><td>Fakten und Hintergründe</td></tr>
+	<tr><td>Wovon handelt die Arbeit?</td></tr>
+	<tr><td>Was wurde gemacht, wie, womit & warum?</td></tr>
+	<tr><td>Vorstellung einer Analyse</td></tr>
+	<tr><td>Fazit & Diskussion</td></tr>
+</table>
+++++
 
 
 
@@ -65,9 +91,9 @@ include::../_shared/slide-footer.adoc[]
 // Let's Start the presentation //
 // ############################ //
 
-
-
 include::slides/1_Intro.adoc[]
+
+include::slides/2_Ziel_der_Arbeit.adoc
 
 include::slides/2_background_and_methods.adoc[]
 

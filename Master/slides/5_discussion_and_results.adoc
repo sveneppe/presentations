@@ -1,18 +1,23 @@
-== 5. Diskussion & Schlussfolgerungen
+== Diskussion & Schlussfolgerungen
 
-=== 5.1 Bewertung der Ergebnisse
+
+Fazit & Diskussion
+
+
+
+=== Bewertung der Ergebnisse
 
 * Wie zuverlässig sind die Korrekturfaktoren?
 * Einfluss struktureller Änderungen auf die Qualität des Record Linkage
 * Interpretation der Trends in den pM-Werten
 
-=== 5.2 Empfehlungen für zukünftige Arbeiten
+=== Empfehlungen für zukünftige Arbeiten
 
 * Einführung eines standardisierten Monitorings für Korrekturfaktoren
 * Nutzung weiterer Machine-Learning-Modelle zur Qualitätsverbesserung
 * Langfristige Überwachung der Datenqualität
 
-=== 5.3 Offene Fragen & Diskussion
+=== Offene Fragen & Diskussion
 
 * Welchen Einfluss haben geänderte Datenschutzrichtlinien auf das Verfahren?
 * Ist eine Kombination aus deterministischem und probabilistischem Matching sinnvoll?
