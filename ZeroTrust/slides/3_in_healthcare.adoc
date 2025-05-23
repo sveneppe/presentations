@@ -1,0 +1,131 @@
+== 🩺 Zero Trust im Gesundheitswesen
+
+=== Ist das etwas Besonderes?
+
+[%step]
+* LKR NRW = Gesundheitsunternehmen
+
+[%step]
+* Allgemein interessantes & lukratives Ziel
+
+[%step]
+* I.d.R.: Sicherheit zwar Thema; aber ganzheitlich und mit Priorität?
+
+
+=== Bedrohungslage & Besonderheiten im Gesundheitswesen
+
+[cols=",",options="header",]
+|===
+|Faktor |Warum relevant?
+
+|*Hochsensible Daten* |Patientenakten, Diagnosen, Therapien, genetische Profile
+
+|*Regulatorischer Druck* |z.B. DSGVO, § 75c SGB V, NIS2, B3S Gesundheit
+
+|*Heterogene Systeme* |Alt-IT (Medizinprodukte), neue Cloud-Lösungen, IoT (Medizingeräte)
+|===
+
+[.notes]
+--
+* Daten – i.d.R. nicht widerrufbar, personenbezogen und ggf. nicht wiederholbar in der Erfassung
+* Gesetze rechtlich verpflichtend & bindend https://www.sozialgesetzbuch-sgb.de/sgbv/75c.html[75c SGB V] (IT-Sicherheit in Krankenhäusern)
+** NIS2 - Europäische Richtlinie zur Cybersicherheit für Kritis
+** B3S - branchenspezifischer Sicherheitsstandard in Deutschland
+* Ältere Krankenhäuser modernisieren sich
+--
+
+=== Bedrohungslage & Besonderheiten im Gesundheitswesen II
+
+[cols=",",options="header",]
+|===
+|Faktor |Warum relevant?
+
+|*Offene Schnittstellen* |Externe Labore, Praxen, Krankenkassen, Register, Forschung
+
+|*Hoher Digitalisierungsdruck* |TI-Anbindung, E-Rezept, EPA, digitale Pflegeakte
+|===
+
+[.notes]
+--
+* Schnittstellen = Angriffsvektoren
+* Anbindung neuer Technik & Digitalisierung = neue ggf. unbekannte Angriffsflächen
+--
+
+=== Beispielhafte Angriffe auf das Gesundheitswesen
+
+> Universitätsklinikum Düsseldorf (2020, Notaufnahme lahmgelegt)
+
+'''
+
+> Gesundheitsamt Rheinland-Pfalz (2021, durch Ransomware offline gegangen)
+-- Quellen: BSI-Lagebrichte
+
+https://de.statista.com/statistik/daten/studie/1422511/umfrage/cybersicherheitsverletzungen-nach-branche/[Cybersicherheitsverletzungen nach Branche 2022] - 472 Sicherheitsverletzungen im Gesundheits- u. Sozialwesen - Platz 1
+
+[.notes]
+--
+* Beim Thema UKD könnt ihr mal mit Lucas sprechen, er war beim Angriff dort tätig
+--
+
+=== Warum ist Zero Trust im Gesundheitswesen alternativlos?
+
+[%step]
+* *_Daten schwer anonymisierbar_* -> Datenlecks i.d.R. irreversibel
+
+[%step]
+* *_Med. Infrastruktur = Systemrelevant_* -> Ausfälle können Leben kosten
+
+[%step]
+* *_Reputation & Vertrauen_* -> Vorfälle können zu Vertrauensverlust bei Patienten führen
+
+[%step]
+* *_Vernetzung vs. Segmentierung_* -> Alte Geräte, schwache Sicherheitsmechanismen
+
+[%step]
+* *_Cybersicherheit & Audits_* -> Erfordern ein *aktives* Risikomanagement
+
+[.notes]
+--
+* Daten sind nur bedingt anonym zu speichern, Personenbezug erforderlich Diagnosen detailliert beschrieben
+*
+--
+
+=== Und wie soll das gehen?
+
+
+=== Beispielhafte Anwendung der Prinzipien
+
+[cols=",",options="header",]
+|===
+|Prinzip |Gesundheitskontext
+|*Explizite Verifikation* |MFA für Zugriffe auf ePA, Zugriffsprüfung für medizinisches Personal vs. Verwaltung
+|*Least Privilege* |Arzt sieht nur eigene Patienten, Pflegekraft nur Station X, KI-Modell nur Anonymdaten
+|*Mikrosegmentierung* |Trennung zwischen Radiologie-Netz, KIS, PACS, Labor, Internetzugängen
+|===
+
+[.notes]
+--
+* MFA = Multi-Factor-Authentifizierung
+* PACS = Picture Archiving and Communication Systems -> Digitale Systeme zur Speicherung und Archivierung von Bilddaten
+* *Kontextuelles Vertrauen* - Zugriff auf Befunde nur im Krankenhausnetz + zu Schichtzeiten
+* *Automatisierung* - Zugriffsverweigerung bei nicht aktuellem Virenschutz auf Geräten (Zero Trust Network Access – ZTNA) + Benutzerzertifikat
+* *Permanente Überwachung* - Detektion von ungewöhnlichen Zugriffen auf ePA (z.B. Nachts auf viele Akten)
+--
+
+=== Sagt sich ja leicht! Und wie umsetzbar?
+
+=== Beispiele von typischen Maßnahmen in der Umsetzung:
+
+[cols=",",options="header",]
+|===
+|Maßnahme |Beispiel im Gesundheitsbetrieb
+|Identity Federation |SSO mit Keycloak für KIS, PACS, RIS, Pflegeakte
+|ZTNA |Zugriff von Homeoffice nur mit Gerätecheck + Benutzerzertifikat
+|Segmentierung |Virtuelle Firewalls trennen Labor, Pflege, Verwaltung
+|Monitoring |SIEM erkennt ungewöhnliche Zugriffsmuster (z.B. Nutzer lädt 1.000 Akten in 1 Minute)
+|===
+
+[.notes]
+--
+* ZTNA = Zero trust network access
+--

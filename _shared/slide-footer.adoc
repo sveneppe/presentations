@@ -12,6 +12,14 @@
 		</p></div>
 	</div>
 
+    <div class="participant">
+		<a href="{event-url}" title="{event-name}"></a>
+        <a href="{event-logo-url}"><img src="{event-logo}" class="logo"></a>
+		<div class="name"><p>
+            <a href="{event-url}" title="{event-name} website">{event-name}</a>
+		</p></div>
+	</div>
+
 	<div class="participant">
 		<a href="{guest-url}" title="{guest-name}"></a>
         <a href="{guest-logo-url}"><img src="{guest-logo}" class="logo"></a>

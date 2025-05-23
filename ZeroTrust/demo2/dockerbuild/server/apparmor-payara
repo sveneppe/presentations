@@ -1,0 +1,70 @@
+#include <tunables/global>
+
+profile payara-micro flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+  #include <abstractions/java>
+
+  network inet tcp,
+  network inet udp,
+  network inet icmp,
+  deny network raw,
+  deny network packet,
+
+  file,
+  umount,
+
+  # Schreibschutz auf sensiblen Systemverzeichnissen
+  deny /bin/** wl,
+  deny /boot/** wl,
+  deny /dev/** wl,
+  deny /etc/** wl,
+  deny /home/** wl,
+  deny /lib/** wl,
+  deny /lib64/** wl,
+  deny /media/** wl,
+  deny /mnt/** wl,
+  deny /opt/** wl,
+  deny /proc/** wl,
+  deny /root/** wl,
+  deny /sbin/** wl,
+  deny /srv/** wl,
+  deny /tmp/** wl,
+  deny /sys/** wl,
+  deny /usr/** wl,
+
+  audit /** w,
+
+  # Logs und PIDs (anpassen je nach Pfad im Container)
+  /var/log/payara/** rw,
+  /var/run/payara.pid w,
+
+  # Java Binary
+  /usr/bin/java ix,
+  /opt/payara/** rix,
+  /opt/payara/microprofile/** rw,
+
+  # Verhindert Shell-Spawning und Systemzugriff
+  deny /bin/sh mrwklx,
+  deny /bin/bash mrwklx,
+  deny /usr/bin/top mrwklx,
+  deny /usr/bin/strace mrwklx,
+
+  capability chown,
+  capability dac_override,
+  capability setuid,
+  capability setgid,
+  capability net_bind_service,
+  capability sys_chroot,
+
+  # Einschränkungen im /proc und /sys
+  deny @{PROC}/* w,
+  deny @{PROC}/sysrq-trigger rwklx,
+  deny @{PROC}/mem rwklx,
+  deny @{PROC}/kmem rwklx,
+  deny @{PROC}/kcore rwklx,
+  deny /sys/[^f]*/** wklx,
+  deny /sys/fs/** wklx,
+  deny /sys/kernel/security/** rwklx,
+
+  deny mount,
+}

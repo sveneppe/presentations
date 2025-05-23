@@ -1,0 +1,77 @@
+== Warum das Thema?
+
+=== Warum reden wir über Zero Trust?
+
+[%step]
+> Wer glaubt, dass die traditionellen Sicherheitsmaßnahmen heute noch ausreichen?
+
+'''
+
+[%step]
+> Wer kennt alles die Unterschiede zwischen traditionelle Maßnahmen und heutige nach ZT?
+
+'''
+
+[%step]
+> Warum nicht?
+
+[.notes]
+--
+* In den letzten Jahren hat sich das Bedrohungsumfeld rasant verändert. Traditionelle Sicherheitsansätze, die darauf basieren, das „Innere“ eines Netzwerks als sicher anzusehen und nur „außen“ zu schützen, sind zunehmend nicht mehr ausreichend.
+
+* Angriffe wie *Zero-Day-Exploits*, *Phishing* und *Ransomware* nutzen immer öfter die Vertrauensvoraussetzungen traditioneller Sicherheitsmodelle aus.
+
+* *Zero Trust* zielt darauf ab, dieses Modell zu überdenken und Sicherheit neu zu definieren – mit dem Prinzip, *niemals zu vertrauen und immer zu überprüfen*.
+
+* Leider hatten wir nun einen Fall, weshalb es vielleicht sinnvoll ist, sich das Thema mal anzuschauen
+--
+
+=== Traditionelle Sicherheitsansätze
+
+* Beginn des eigenen Netzwerks = Barriere zur "bösen" Außenwelt
+** Firewalls
+** VPNs
+** IDS
+
+* Vertrauen durch Identität und Position
+
+* Statische Sicherheitsrichtlinien
+
+[.notes]
+--
+* IDS = Intrusion detection system
+
+* Benutzername Passwort Auth. und Standort = Unternehmensnetzwerk 😊
+
+* Sicherheit = Einmal eingerichtet -> nicht mehr kontrolliert
+--
+
+[%notitle, backgroung-color="white"]
+=== Traditionelle Sicherheitsansätze
+
+image::Geblockt.png[]
+
+[.notes]
+--
+* System Center Virtual Machine Manager - Microsoft Tool zur Steuerung von Hyper-V Hosts
+
+--
+
+=== Bedrohungsansätze für traditionelle Sicherheitsansätze
+
+* Angriffe innerhalb des Netzwerks
+* MITM
+* Insider Bedrohungen
+* Ransomware Angriffe
+
+[.notes]
+--
+* *Angriffe im Netzwerk* sobald jemand den Zugriff hat besteht unbeschränkter Zugriff, denn Firewall war ja da und hat den Zugriff erlaubt!
+* MITM (Man-in-the-Middle): Abfangen von Datenpaketen / unverschlüsselten E-Mails etc.
+* Unterschätzt wird oft die Bedrohung von Innen heraus, egal ob mutwillig oder unfreiwillig
+--
+
+[%notitle]
+=== Traditionelle Sicherheitsansätze II
+
+image::Nicht_Geblockt.png[]

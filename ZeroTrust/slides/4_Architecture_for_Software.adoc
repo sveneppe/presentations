@@ -1,0 +1,124 @@
+== Zero Trust - Architektur in Softwareanwendungen ☕
+
+[%notitle]
+=== Einstieg
+
+⚠️ Ein Gedankenexperiment! ⚠️
+
+[.notes]
+--
+* Folgendes Szenario:
+** Es gibt einen einzelnen Microservice der durch eine schwache Authentifizierung kompromittiert wurde.
+Dadurch bekommt eine nicht authorisierte Person Zugang zu hochsensiblen Personendaten innerhalb der Anwendung und kann auch Daten von der zugehörigen Datenbank abfragen.
+Zu allem Übel schaft es die Person aus dem Container und kann sich lateral im Netzwerk bewegen.
+Wer ist/war verantwortlich für die Sicherheit des Microservice-Systems & den Docker Container?
+*** Das Entwicklungsteam!
+--
+
+=== Klassische Server Client Modelle
+
+* Wir erinnern uns an traditionelle Sicherheitsmaßnahmen?
+** Die gibt es auch für Anwendungen
+
+=== Traditionelle Absicherung
+
+[%step]
+* TLS für Transportschicht
+
+[%step]
+* Benutzername Passwort zur Authentifizierung
+
+[%step]
+--
+* Klassisches Rollenmodell
+** *Admin* = darf alles -> Und jeder im Unternehmen kennt das Passwort 👍
+** *Entwickler* = darf alles + +
+darf noch viel mehr, wenn es mal nicht sofort klappt 🙈
+--
+
+[%step]
+* Achja ... weitere Rollen braucht es nicht, Admin und Dev reichen doch 😎
+
+[%step]
+* Aber die Anwendung!... Die braucht einen technischen Nutzer!
+
+
+=== Typische Schwachstellen in Anwendungen
+
+* Flaches Netz -> Alle Systeme vertrauen sich implizit
+* Keine Service-Authentisierung -> TLS schützt Transport, nicht Identität
+* Unsichere APIs -> Input Validation und co. -> Was ist das?
+* Kein Audit-Trail -> Mein Prozess ruft doch nur 1 Instanz auf..... oder nicht?
+
+
+=== Maßnahmen nach Zero Trust
+
+[cols="2,3,1",options="header",]
+|===
+|Maßnahme |Umsetzung |Bewertung
+|mTLS |Server & Client-Zertifikate mit gegenseitiger Authentifizierung | *
+|Zentrale Authentifizierung |Keycloak + OpenID Connect |✔️
+|Minimale Zugriffsrechte |Fine-grained Roles & Scopes |🤔
+|Input-Validierung |OWASP-Konformität (Validatoren, Constraints) |(✔️)
+|Isolierte Container |Docker mit Netzwerk-Policies |🤨
+|Service Mesh (optional) |z.B. https://istio.io/latest/about/service-mesh/[Istio mit AuthN/AuthZ-Regeln] |❓😂
+|===
+
+[.notes]
+--
+* mTLS ... das ignorieren wir mal kurz
+* Keycloak + OpenID Connect: Haben wir ne.... joa Top!
+** Auch überall im Einsatz ne ;)
+* Minimale Zugriffsrechte: Let's talk about that later :D
+* Input Validierung: Fangen wir grade an oder
+** OWASP-Konform .... naja egal
+* Isolierte Container: Naja, wir nutzen Container... Netzwerk-Konfig haben wir gerade zu 80 Prozent bei allen raus gehauen ne...
+* Service Mesh: Haha, ... was ist das?!
+--
+
+=== What Next?
+
+=== Coding-Session 😎
+
+Von Standard TLS zu mTLS mit Payara Micro + Docker
+
+=== Noch Fit?
+
+[.notes]
+--
+* Könnt ihr noch, oder wollen wir diskutieren, ob das sinnvoll ist?
+--
+
+=== Was passiert hier?
+
+[source, Dockerfile]
+--
+FROM golang:1.20.8-alpine as builder
+
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -o myapp
+
+FROM scratch as final
+
+COPY --from=builder /app/myapp /
+--
+
+=== Aktuelle Kommunikation
+
+link:images/Aktuelle_Netzkommunikation.png[Aktuelle Netzkommunikation]
+
+
+=== Kommunikation Stufe 1
+
+link:images/Mit_Proxy_Netzsegmentierung.png[Mögliche Netzkommunikation mit Proxy]
+
+=== Coding-Session II 😎
+
+Docker & Payara Hardening
+
+
+
+

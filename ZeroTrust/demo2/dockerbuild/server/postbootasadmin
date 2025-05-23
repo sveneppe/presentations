@@ -1,0 +1,7 @@
+# Kein Neustart nötig
+set configs.config.server-config.network-config.protocols.protocol.https-listener.ssl.cert-nickname=server
+set configs.config.server-config.security-service.activate-default-principal-to-role-mapping=true
+
+# Neustart nötig!
+set server.log-service.module-log-levels.audit.security=FINE
+set server.log-service.log-file=audit.log

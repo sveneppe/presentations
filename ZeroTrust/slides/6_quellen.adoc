@@ -1,0 +1,8 @@
+== 📚 8. *Literatur & Referenzen*
+
+. *NIST SP 800-207*: link:++https://doi.org/10.6028/NIST.SP.800-207[NIST Special Publication 800-207]++[Zero Trust Architecture]
+. *Google BeyondCorp Whitepaper*: #https://cloud.google.com/beyondcorp#
+. *Forrester Research* – Ursprung des Begriffs „Zero Trust“ (2009)
+. *CISA Zero Trust Maturity Model*: #https://www.cisa.gov/resources-tools/resources/zero-trust-maturity-model#
+. *Microsoft Zero Trust Guidance*: https://learn.microsoft.com/en-us/security/zero-trust/
+. *OWASP-Cheat Sheet:* https://cheatsheetseries.owasp.org https://github.com/OWASP/CheatSheetSeries[GitHub-Project]

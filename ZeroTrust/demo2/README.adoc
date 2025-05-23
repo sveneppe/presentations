@@ -1,0 +1,124 @@
+= Demo 2: Zero Trust Projekt
+
+.Nginx-Test
+[source, shell]
+--
+curl --cacert /etc/nginx/certs/ca.crt --cert /etc/nginx/certs/client.crt --key /etc/nginx/certs/client.key https://payara:8181
+--
+
+
+.Openssl Anlegen mit SAN
+[source, shell]
+--
+openssl req -new -key server.key -out server.csr -config san.cnf
+--
+
+
+.Openssl-Befehl prüfen, dass SAN eingetragen
+[source, shell]
+--
+openssl req -in server.csr -noout -text | grep -A 5 "Subject Alternative Name"
+--
+
+== Erweiterung für Infrastruktur
+
+Compose Optionen:
+
+[source, yml]
+--
+security_opt:
+    - no-new-privileges:true
+    - apparmor=payara-micro
+cap_drop:
+    - ALL
+cap_add:
+    - CHOWN
+    - DAC_OVERRIDE
+    - SETUID
+    - SETGID
+    - NET_BIND_SERVICE
+    - NET_RAW
+--
+
+.Apparmor Payara-Micro
+[source, text]
+--
+#include <tunables/global>
+
+profile payara-micro flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+  #include <abstractions/java>
+
+  network inet tcp,
+  network inet udp,
+  network inet icmp,
+  deny network raw,
+  deny network packet,
+
+  file,
+  umount,
+
+  # Schreibschutz auf sensiblen Systemverzeichnissen
+  deny /bin/** wl,
+  deny /boot/** wl,
+  deny /dev/** wl,
+  deny /etc/** wl,
+  deny /home/** wl,
+  deny /lib/** wl,
+  deny /lib64/** wl,
+  deny /media/** wl,
+  deny /mnt/** wl,
+  deny /opt/** wl,
+  deny /proc/** wl,
+  deny /root/** wl,
+  deny /sbin/** wl,
+  deny /srv/** wl,
+  deny /tmp/** wl,
+  deny /sys/** wl,
+  deny /usr/** wl,
+
+  audit /** w,
+
+  # Logs und PIDs (anpassen je nach Pfad im Container)
+  /var/log/payara/** rw,
+  /var/run/payara.pid w,
+
+  # Java Binary
+  /usr/bin/java ix,
+  /opt/payara/** rix,
+  /opt/payara/microprofile/** rw,
+
+  # Verhindert Shell-Spawning und Systemzugriff
+  deny /bin/sh mrwklx,
+  deny /bin/bash mrwklx,
+  deny /usr/bin/top mrwklx,
+  deny /usr/bin/strace mrwklx,
+
+  capability chown,
+  capability dac_override,
+  capability setuid,
+  capability setgid,
+  capability net_bind_service,
+  capability sys_chroot,
+
+  # Einschränkungen im /proc und /sys
+  deny @{PROC}/* w,
+  deny @{PROC}/sysrq-trigger rwklx,
+  deny @{PROC}/mem rwklx,
+  deny @{PROC}/kmem rwklx,
+  deny @{PROC}/kcore rwklx,
+  deny /sys/[^f]*/** wklx,
+  deny /sys/fs/** wklx,
+  deny /sys/kernel/security/** rwklx,
+
+  deny mount,
+}
+
+--
+
+Dockerfile Optionen:
+
+[source, Dockerfile]
+--
+USER 1001
+--

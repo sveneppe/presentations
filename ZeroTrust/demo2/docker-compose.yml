@@ -1,0 +1,67 @@
+services:
+  payara:
+    build: .
+    container_name: payara
+    networks:
+      - internal
+      - nginx
+    volumes:
+      - ./dockerbuild/certs/keystore.p12:/opt/domain/config/keystore.p12:ro
+      - ./dockerbuild/certs/truststore.p12:/opt/domain/config/truststore.p12:ro
+      - ./dockerbuild/server/prebootasadmin:/opt/domain/config/prebootasadmin
+      - ./dockerbuild/server/postbootasadmin:/opt/domain/config/postbootasadmin
+      - ./server/target/server.war:/opt/payara/deployments/server.war
+    expose:
+      - "8181"
+
+
+  db:
+    image: postgres:15
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: example
+    networks:
+      - internal
+    expose:
+      - "5432"
+    volumes:
+      - ./dockerbuild/postgres/data:/var/lib/postgresql/data:rw
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    networks:
+      - nginx
+    ports:
+      - "18181:443"
+    volumes:
+      - ./dockerbuild/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./dockerbuild/certs:/etc/nginx/certs:ro
+    # We can set a lot here, e.g. apparmor for specific profiles
+    security_opt:
+      - no-new-privileges=true
+    # Capabilities in Linux -> https://man7.org/linux/man-pages/man7/capabilities.7.html
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - SETUID
+      - SETGID
+      - NET_BIND_SERVICE
+      - NET_RAW
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+
+# Why we split the network??
+networks:
+  internal:
+    driver: bridge
+  nginx:
+    driver: bridge

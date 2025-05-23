@@ -1,0 +1,55 @@
+== Ist Zero Trust ein Overkill im LKR NRW ❓
+
+=== Was haben wir gesehen?
+
+[%step]
+. 6 Prinzipien bilden das Fundament von Zero Trust
+[%step]
+. Beispiele & Maßnahmenvorschläge zur Umsetzung wurden vorgestellt
+[%step]
+. Anhand von Beispielen wurde die Relevanz deutlich
+[%step]
+. Anhand von Demos wurden erste Ansätze zur Härtung aufgezeigt
+
+
+=== Mögliche Herausforderungen
+
+[%step]
+* Entwickler / Admins brauchen Zeit
+[%step]
+* Entwickler / Admins brauchen Wissen
+[%step]
+* Entwickler / Admins brauchen Interesse & Willen
+
+[.notes]
+--
+* Entwickler brauchen Zeit, Sicherheit die nötige Prio zu geben, die sie haben sollte
+** Input-Validierung
+** Output-Validierung
+** Privilege Escalation
+** Verschlüsselungsverfahren
+** Parallele Multi-Auth-Verfahren
+** VM A kann mit VM B, C, D, E kommunizieren ohne Rot zu werden
+** Nutzer erreicht Maschinen, solange im VPN
+--
+
+
+=== Im LKR? Vorgaben sind da, aber reicht das?
+
+=== Kleiner Test!
+
+[%step]
+* Welcher Security-Standard soll im Unternehmen 2026 erreicht werden?
+[%step]
+* Welche Maßnahmen braucht es in der IT dafür?
+[%step]
+* Welche Kenntnis benötigen die Entwickler / Admins, um die Maßnahmen flächendeckend umzusetzen?
+
+=== Wo liegt da Zero Trust?
+
+[%step]
+* Entspricht der maximalen Ausbaustufe
+
+=== Lasst uns diskutieren!
+
+Ist Zero Trust ein Overkill?

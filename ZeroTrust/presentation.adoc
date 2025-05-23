@@ -1,0 +1,116 @@
+= Zero Trust in Anwendungen
+
+:author: Sven Eppe
+:!toc-title:
+:toc: left
+:toclevels: 1
+
+:figure-caption: Abbildung
+:important-caption: Warnung
+:backend: revealjs
+
+// RevealJs-Properties
+:revealjs_theme: nipa-night
+:revealjsdir: ../_reveal.js/head
+//:revealjs_autoSlide: 5000
+:revealjs_history: true
+:revealjs_fragmentInURL: true
+:revealjs_viewDistance: 5
+:revealjs_width: 1408
+:revealjs_height: 792
+:revealjs_controls: true
+:revealjs_controlsLayout: edges
+:revealjs_controlsTutorial: true
+:revealjs_slideNumber: c/t
+:revealjs_showSlideNumber: all
+:revealjs_showNotes: false
+:revealjs_autoPlayMedia: true
+:revealjs_defaultTiming: 42
+//:revealjs_transitionSpeed:
+:revealjs_history: true
+:revealjs_center: true
+:revealjs_transition: fade
+:revealjs_backgroundTransition: fade
+// Need to be overwritten
+:revealjs_parallaxBackgroundImage: images/background_DALLE.webp
+:revealjs_parallaxBackgroundSize: 2500px 1400px
+
+:imagesdir: images
+:source-highlighter: highlight.js
+:icons: font
+
+:docinfo: shared
+:docinfodir: ../_shared
+
+:revealjs_plugin_zoom: enabled
+:revealjs_plugin_notes: enabled
+
+:stem: latexmath
+
+++++
+<style>
+.reveal .title h1 {
+	font-size: 2em;
+}
+.reveal .title h2 {
+	font-size: 1em;
+}
+</style>
+<h2>Zwingend nötig oder technischer Overkill?</h2>
+++++
+
+:revealjs_totalTime: 1500
+
+
+:personal-image: ../_shared-images/seppe-face.jpg
+:guest-name: Klausurtagung - LKR NRW SWE
+:guest-url: https://www.hackstueck-hattingen.de/
+:guest-logo: images/Hackstück_logo.jpg
+:guest-name: Zum Hackstück
+:host-logo: ../_shared-images/logo_lightbg.png
+:host-url: https://www.landeskrebsregister.nrw/
+:event-name: Klausurtagung SWE - 2025
+:event-logo: {host-logo}
+include::../_shared/slide-footer.adoc[]
+
+
+:title: Zero Trust in Anwendungen
+
+
+== Was gehen wir heute durch?
+
+++++
+<table class="toc" align="center">
+    <tr><td>Zero Trust - Warum sprechen wir darüber?</td></tr>
+    <tr><td>Zero Trust - Grundlagen & Prinzipien</td></tr>
+    <tr><td>Zero Trust im Gesundheitswesen</td></tr>
+	<tr><td>Zero Trust Architektur für Anwendungen</td></tr>
+	<tr><td>Ist Zero Trust ein Overkill im LKR NRW? - Diskussion</td></tr>
+
+</table>
+++++
+
+
+
+// ############################ //
+// Let's Start the presentation //
+// ############################ //
+
+include::slides/1_Intro.adoc[]
+
+include::slides/2_principles_fundamentals.adoc[]
+
+include::slides/3_in_healthcare.adoc[]
+
+include::slides/4_Architecture_for_Software.adoc[]
+
+include::slides/5_challenges_discussion.adoc[]
+
+include::slides/6_quellen.adoc[]
+
+== Danke für die Aufmerksamkeit!
+
+// Press "s" for speaker Notes!
+
+// LKR-Schriftfarbe grün: #00a8b4 rgba(0,168,180,255)
+// LKR-Schriftfarbe dunkel blau: #003064 rgba(0,48,100,255)

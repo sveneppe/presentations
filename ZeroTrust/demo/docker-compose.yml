@@ -1,0 +1,13 @@
+services:
+  payara-mtls:
+    build: .
+    ports:
+      - "18181:8181"
+    container_name: test-payara-mtls
+    volumes:
+      - ./dockerbuild/certs/keystore.p12:/opt/domain/config/keystore.p12
+      - ./dockerbuild/certs/cacerts.p12:/opt/domain/config/cacerts.p12
+      - ./dockerbuild/server/prebootasadmin:/opt/domain/config/prebootasadmin
+      - ./dockerbuild/server/postbootasadmin:/opt/domain/config/postbootasadmin
+      - ./server/target/server.war:/opt/payara/deployments/server.war
+

@@ -1,0 +1,2 @@
+set configs.config.server-config.network-config.protocols.protocol.https-listener.ssl.cert-nickname=server
+set configs.config.server-config.security-service.activate-default-principal-to-role-mapping=true

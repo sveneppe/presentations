@@ -1,0 +1,283 @@
+= Demo: Zero Trust Project
+
+Innerhalb dieses Projektes ist eine kleine Demo zum Aufsetzen von mTLS vorhanden.
+Es gibt ein kleines Server-Modul mit einem Service unter der URL `/api/hi`.
+Mithilfe von Konfigurationen für einen Payara-Micro (link:Dockerfile[]]) wird der Container mit mTLS gestartet.
+Dafür werden entsprechende Zertifikate (link:server/src/main/resources/[]) benötigt, die beim Starten des Applikationsservers mitgegeben werden.
+Alles weitere sind Notizen und Befehle die für die Präsentation hilfreich sein könnten.
+
+== Notes:
+
+.Anlegen von Zertifikaten
+[source, shell]
+--
+openssl genrsa -out ca.key 4096
+openssl req -x509 -new -nodes -key ca.key -sha256 -days 3650 -out ca.crt -subj "/C=DE/ST=NRW/O=Test/CN=Test-Root-CA"
+--
+
+.Anlage von Server-Zertifikaten
+[source, shell]
+--
+# Key generieren
+openssl genrsa -out server.key 2048
+
+# Certificate Signing Request (CSR)
+openssl req -new -key server.key -out server.csr -subj "/C=DE/ST=NRW/O=TestOrg/CN=localhost"
+
+# Zertifikat signieren
+openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 365 -sha256
+--
+
+.Client-Zertifikate
+[source, shell]
+--
+openssl genrsa -out client.key 2048
+
+openssl req -new -key client.key -out client.csr -subj "/C=DE/ST=NRW/O=TestClient/CN=client"
+
+openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 365 -sha256
+--
+
+.Anlage eines keystores im p12-Format
+[source, shell]
+--
+openssl pkcs12 -export -in server.crt -inkey server.key -out keystore.p12 -name server -CAfile ca.crt -caname root -passout pass:changeit
+--
+
+.Truststore-Client
+[source, shell]
+--
+keytool -importcert -trustcacerts -file ca.crt -alias rootca -keystore truststore.p12 -storetype PKCS12 -storepass changeit -noprompt
+--
+
+.Truststore-Server
+[source, shell]
+--
+keytool -importcert -trustcacerts -file ca.crt -alias rootca -keystore cacerts.p12 -storetype PKCS12 -storepass changeit -noprompt
+--
+
+.Curl-Befehl ohne Zertifikate
+[source,shell]
+--
+curl -v --cacert dockerbuild/certs/ca.crt  https://localhost:18181/server/api/application.wadl
+--
+
+.Result
+[%collapsible]
+====
+
+[source, shell]
+--
+* Host localhost:18181 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:18181...
+* Connected to localhost (::1) port 18181
+* ALPN: curl offers h2,http/1.1
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+*  CAfile: dockerbuild/certs/ca.crt
+*  CApath: /etc/ssl/certs
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Request CERT (13):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.3 (OUT), TLS handshake, Certificate (11):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384 / X25519 / RSASSA-PSS
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: C=DE; ST=NRW; O=TestOrg; CN=localhost
+*  start date: May 19 14:10:05 2025 GMT
+*  expire date: May 19 14:10:05 2026 GMT
+*  common name: localhost (matched)
+*  issuer: C=DE; ST=NRW; O=Test; CN=Test-Root-CA
+*  SSL certificate verify ok.
+*   Certificate level 0: Public key type RSA (2048/112 Bits/secBits), signed using sha256WithRSAEncryption
+*   Certificate level 1: Public key type RSA (4096/152 Bits/secBits), signed using sha256WithRSAEncryption
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://localhost:18181/server/api/application.wadl
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: localhost:18181]
+* [HTTP/2] [1] [:path: /server/api/application.wadl]
+* [HTTP/2] [1] [user-agent: curl/8.5.0]
+* [HTTP/2] [1] [accept: */*]
+> GET /server/api/application.wadl HTTP/2
+> Host: localhost:18181
+> User-Agent: curl/8.5.0
+> Accept: */*
+>
+* Closing connection
+* TLSv1.3 (OUT), TLS alert, close notify (256):
+curl: (56) Failure when receiving data from the peer
+--
+====
+
+
+
+.Curl-Befehl positiv
+[source, shell]
+--
+curl -v --cert dockerbuild/certs/client.crt --key dockerbuild/certs/client.key --cacert dockerbuild/certs/ca.crt  https://localhost:18181/server/api/hi
+--
+
+.Result
+[%collapsible]
+====
+
+[source, shell]
+--
+curl -v --cert dockerbuild/certs/client.crt --key dockerbuild/certs/client.key --cacert dockerbuild/certs/ca.crt  https://localhost:18181/server/api/hi
+* Host localhost:18181 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:18181...
+* Connected to localhost (::1) port 18181
+* ALPN: curl offers h2,http/1.1
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+*  CAfile: dockerbuild/certs/ca.crt
+*  CApath: /etc/ssl/certs
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Request CERT (13):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.3 (OUT), TLS handshake, Certificate (11):
+* TLSv1.3 (OUT), TLS handshake, CERT verify (15):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384 / X25519 / RSASSA-PSS
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: C=DE; ST=NRW; O=TestOrg; CN=localhost
+*  start date: May 19 14:10:05 2025 GMT
+*  expire date: May 19 14:10:05 2026 GMT
+*  common name: localhost (matched)
+*  issuer: C=DE; ST=NRW; O=Test; CN=Test-Root-CA
+*  SSL certificate verify ok.
+*   Certificate level 0: Public key type RSA (2048/112 Bits/secBits), signed using sha256WithRSAEncryption
+*   Certificate level 1: Public key type RSA (4096/152 Bits/secBits), signed using sha256WithRSAEncryption
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://localhost:18181/server/api/hi
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: localhost:18181]
+* [HTTP/2] [1] [:path: /server/api/hi]
+* [HTTP/2] [1] [user-agent: curl/8.5.0]
+* [HTTP/2] [1] [accept: */*]
+> GET /server/api/hi HTTP/2
+> Host: localhost:18181
+> User-Agent: curl/8.5.0
+> Accept: */*
+>
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+< HTTP/2 200
+< content-type: text/plain
+< content-length: 66
+<
+* Connection #0 to host localhost left intact
+Hello from a Zero Trust Server with mTLS active. Auth-Schema: null
+--
+====
+
+=== Erweiterung für Infrastruktur
+
+Compose Optionen:
+
+[source, yml]
+--
+security_opt:
+    - no-new-privileges:true
+    - apparmor=payara-micro
+cap_drop:
+    - ALL
+cap_add:
+    - NET_BIND_SERVICE
+--
+
+.Apparmor Payara-Micro
+[source, text]
+--
+#include <tunables/global>
+
+profile payara-micro flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+  #include <abstractions/java>
+
+  network inet tcp,
+  network inet udp,
+  network inet icmp,
+  deny network raw,
+  deny network packet,
+
+  file,
+  umount,
+
+  # Schreibschutz auf sensiblen Systemverzeichnissen
+  deny /bin/** wl,
+  deny /boot/** wl,
+  deny /dev/** wl,
+  deny /etc/** wl,
+  deny /home/** wl,
+  deny /lib/** wl,
+  deny /lib64/** wl,
+  deny /media/** wl,
+  deny /mnt/** wl,
+  deny /opt/** wl,
+  deny /proc/** wl,
+  deny /root/** wl,
+  deny /sbin/** wl,
+  deny /srv/** wl,
+  deny /tmp/** wl,
+  deny /sys/** wl,
+  deny /usr/** wl,
+
+  audit /** w,
+
+  # Logs und PIDs (anpassen je nach Pfad im Container)
+  /var/log/payara/** rw,
+  /var/run/payara.pid w,
+
+  # Java Binary
+  /usr/bin/java ix,
+  /opt/payara/** rix,
+  /opt/payara/microprofile/** rw,
+
+  # Verhindert Shell-Spawning und Systemzugriff
+  deny /bin/sh mrwklx,
+  deny /bin/bash mrwklx,
+  deny /usr/bin/top mrwklx,
+  deny /usr/bin/strace mrwklx,
+
+  capability chown,
+  capability dac_override,
+  capability setuid,
+  capability setgid,
+  capability net_bind_service,
+  capability sys_chroot,
+
+  # Einschränkungen im /proc und /sys
+  deny @{PROC}/* w,
+  deny @{PROC}/sysrq-trigger rwklx,
+  deny @{PROC}/mem rwklx,
+  deny @{PROC}/kmem rwklx,
+  deny @{PROC}/kcore rwklx,
+  deny /sys/[^f]*/** wklx,
+  deny /sys/fs/** wklx,
+  deny /sys/kernel/security/** rwklx,
+
+  deny mount,
+}
+
+--
+
+Dockerfile Optionen:
+
+[source, Dockerfile]
+--
+USER 1001
+--
